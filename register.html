@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMUN - Registration</title>
+    <title>SMUN - Register</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
     <link rel="icon" type="image/png" href="favicon.png">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-VCB5QTGWRH');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-VCB5QTGWRH');
+    </script>
+
     <style>
+        /* ---------- Page-specific Styles ---------- */
+        main{
+           transform:translateY(13.4vh);
+        }
         /* Matte Black + Gold Button (Diagonal Fill Effect) */
         .button {
           padding: 1em 2.2em;
@@ -38,7 +43,7 @@
         }
 
         .button:hover {
-          color: #111; /* invert on hover */
+          color: #111;
           transform: scale(1.1);
           outline: 2px solid #d4af37;
           box-shadow: 4px 5px 17px -4px rgba(212,175,55,0.4);
@@ -51,7 +56,7 @@
           top: 0;
           width: 0;
           height: 100%;
-          background-color: #d4af37; /* gold fill */
+          background-color: #d4af37;
           transform: skewX(45deg);
           z-index: -1;
           transition: width 700ms ease;
@@ -61,11 +66,11 @@
           width: 250%;
         }
 
-        /* Refined Info Box (Premium Matte Card) */
+        /* Premium Info Box */
         .info-box {
           margin-top: 4rem;
           padding: 1.5rem 2rem;
-          background: linear-gradient(145deg, #161616, #0f0f0f); /* subtle matte gradient */
+          background: linear-gradient(145deg, #161616, #0f0f0f);
           border-radius: 12px;
           max-width: 500px;
           margin-left: auto;
@@ -75,13 +80,13 @@
           font-size: 1rem;
           line-height: 1.6;
           box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
-          border: 1px solid rgba(212,175,55,0.2); /* faint gold edge */
+          border: 1px solid rgba(212,175,55,0.2);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .info-box:hover {
           transform: translateY(-4px);
-          box-shadow: 0 10px 24px rgba(212,175,55,0.25); /* soft gold glow */
+          box-shadow: 0 10px 24px rgba(212,175,55,0.25);
         }
 
         .info-box h3 {
@@ -100,17 +105,42 @@
           text-align: center;
           margin-top: 2.5rem;
         }
+
+        /* Page Header */
+        .page-content h1 {
+          text-align: center;
+          font-size: 3rem;
+          color: #fff;
+          margin-top: 4rem;
+          text-shadow: 0 0 10px #dfad51, 0 0 20px #dfad51;
+        }
+
+        .page-content p {
+          text-align: center;
+          color: #e5e5e5;
+          font-size: 1.1rem;
+          margin-top: 0.5rem;
+        }
+
+        .page-content .highlight {
+          color: #dfad51;
+          font-weight: 600;
+        }
+
+       footer{
+            margin-top:219px;
+        }
     </style>
 </head>
 <body>
+<div id="particles-js"></div>
+
 <!-- Navbar -->
 <nav class="navbar">
     <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
 
     <!-- Hamburger Icon -->
-    <div class="hamburger" id="hamburger">
-        &#9776; <!-- Unicode hamburger menu -->
-    </div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
 
     <!-- Nav Links -->
     <ul class="nav-links" id="nav-links">
@@ -123,36 +153,49 @@
     </ul>
 </nav>
 
-<!-- Registration Section -->
-<section class="page-content">
-    <h1 class="text-glow">Registration</h1>
+<!-- Page Content Area -->
+<main class="page-content" style="padding:4rem 2rem; max-width:1400px; margin:0 auto;">    
     <p>Secure your place at <span class="highlight">SMUN</span> by registering below!</p>
-    <!-- Premium Button -->
+
     <div class="btn-container">
-        <a href="https://youtu.be/xvFZjo5PgG0?si=CIq0UXkD9txjBD93" class="button">
+        <a href="https://docs.google.com/forms/d/1rYYWbQcl0NvJ3Gy43w2WQTj8SilQ6EIz6jamP2bkUag/viewform" class="button">
             Register Now
         </a>
     </div>
 
-    <!-- Premium Info Box -->
     <div class="info-box">
-        <h3><b>REGISTRATION FOR ROUND 1 HAS ENDED</b></h3>
-        <p>Stay Tuned For Round 2!</p>
-        
+        <h3>Registration Details</h3>
+        <p><b>Registration Fee:</b> ₹1300</p>
+        <p><b>Deadline:</b> 15th October 2025</p>
+        <p><b>Venue: </b>Indian Council for Cultural Relations, Kolkata (ICCR)</p>
     </div>
-</section>
+</main>
 
-<footer class="footer">
-    <p>&copy; 2025 SMUN | All Rights Reserved</p>
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 SMUN | All rights reserved.</p>
 </footer>
+
+<!-- Particle Background -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+    particlesJS("particles-js", {
+        "particles": {
+            "number": { "value": 500, "density": { "enable": true, "value_area": 1000 } },
+            "color": { "value": "#dfad51" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.7, "random": true },
+            "size": { "value": 1, "random": true },
+            "line_linked": { "enable": true, "distance": 150, "color": "#dfad51", "opacity": 0.2, "width": 1 },
+            "move": { "enable": true, "speed": 0.5, "random": true }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } },
+            "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
+        },
+        "retina_detect": true
+    });
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
