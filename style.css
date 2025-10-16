@@ -46,7 +46,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("images/BG1.png") no-repeat var(--bg-pos-x) var(--bg-pos-y) fixed;
+  background: url("BG1.png") no-repeat var(--bg-pos-x) var(--bg-pos-y) fixed;
   background-size: cover;
   opacity: 1;
   filter: blur(px);
@@ -734,3 +734,4 @@ button, .btn {
   text-align: center;
   color: #c9c9c9;
 }
+
