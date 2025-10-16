@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMUN - Resources</title>
     <link rel="stylesheet" href="style.css">
-      <script defer src="script.js"></script>
+    <script defer src="script.js"></script>
     <link rel="icon" type="image/png" href="favicon.png">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-VCB5QTGWRH');
-</script>
+        gtag('config', 'G-VCB5QTGWRH');
+    </script>
 </head>
 <body>
+<div id="particles-js"></div>
 <!-- Navbar -->
 
 <nav class="navbar">
@@ -57,9 +58,44 @@
 <footer>
     <p>&copy; 2025 SMUN. All rights reserved.</p>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 500,
+          "density": { "enable": true, "value_area": 1000 }
+        },
+        "color": { "value": "#dfad51" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.7, "random": true },
+        "size": { "value": 1, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#dfad51",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": { "enable": true, "speed": 0.5, "random": true }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "repulse": { "distance": 100, "duration": 0.4 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+</script>
 </body>
 </html>
-
 
 
 
