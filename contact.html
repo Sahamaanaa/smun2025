@@ -6,28 +6,52 @@
   <title>SMUN - Contact Us</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/4a4f53f6e8.js" crossorigin="anonymous"></script>
-    <script defer src="script.js"></script>
-    <link rel="icon" type="image/png" href="favicon.png">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-VCB5QTGWRH');
-</script>
+  <style>
+    /* CSS to fix the footer floating issue */
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        transform:translateY(7vh);
+        flex-grow: 1;
+    }
+
+    /* Glow effect from previous conversations */
+    .page-content h1 {
+        /* Text color for the heading */
+        color: #ffd700;
+        text-shadow:
+            0 0 2px #ff0000,   /* Red glow */
+            0 0 4px #ff0000,   /* Red glow */
+            0 0 6px #ff0000;   /* Red glow */
+    }
+
+    /* Adds a subtle animation for a more dynamic glow */
+    @keyframes glow {
+        0% {
+            text-shadow: 0 0 2px #ff0000, 0 0 4px #ff0000;
+        }
+        100% {
+            text-shadow: 0 0 3px #ff0000, 0 0 5px #ff0000;
+        }
+    }
+    .page-content h1:hover {
+        animation: glow 1.5s ease-in-out infinite alternate;
+    }
+  </style>
+
 </head>
 <body>
-
-<!-- Navbar -->
+<div id="particles-js"></div>
 <nav class="navbar">
   <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
 
-  <!-- Hamburger Icon -->
-  <div class="hamburger" id="hamburger">&#9776;</div>
+  <div class="hamburger" id="hamburger">☰</div>
 
-  <!-- Nav Links -->
   <ul class="nav-links" id="nav-links">
     <li><a href="index.html">HOME</a></li>
     <li><a href="register.html">REGISTER</a></li>
@@ -38,19 +62,17 @@
   </ul>
 </nav>
 
-<!-- Contact Section -->
-<section class="page-content">
-  <h1 class="text-glow">Contact Us</h1>
-  <p>In case of any queries, feel free to reach out to the following people:</p>
+<main>
+  <section class="page-content">
+    <h1>Contact Us</h1>
+    <p>In case of any queries, feel free to reach out to the following people:</p>
 
-  <div class="contact-box">
+    <div class="contact-box">
       <div class="card">
         <div class="main">
           <div class="info">
             <strong>Secretary General:</strong> Samrat Pratap Singh <br>
-            <i class="fas fa-phone">+91 74398 38772</i>
-          </div>
-          <div class="social">
+            <i class="fas fa-phone">+91 98765 43210</i>
           </div>
         </div>
       </div>
@@ -59,9 +81,7 @@
         <div class="main">
           <div class="info">
             <strong>Deputy Secretary General:</strong> Shadan Husham <br>
-            <i class="fas fa-phone">+91 79809 76183</i>  
-          </div>
-          <div class="social">
+            <i class="fas fa-phone">+91 91234 56780</i>
           </div>
         </div>
       </div>
@@ -69,33 +89,74 @@
       <div class="card">
         <div class="main">
           <div class="info">
-            <strong>USG Delegate Affairs:</strong> Ashmit Seal <br>
+            <strong>Deputy Secretary General:</strong> Ashmit Seal <br>
             <i class="fas fa-phone">+91 83349 83684</i>
-          </div>
-          <div class="social">
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="main">
-          <div class="info">
-            <strong>USG Delegate Affairs:</strong> Sananya Chakraborty <br>
-            <i class="fas fa-phone">+91 72052 64976</i>  
-          </div>
-          <div class="social">
           </div>
         </div>
       </div>
     </div>
+  </section>
+</main>
 
-  
-</section>
-
-<!-- Footer -->
 <footer class="footer">
-  <p>&copy; 2025 SMUN | All Rights Reserved</p>
+  <p>© 2025 SMUN | All Rights Reserved</p>
 </footer>
 
+<script>
+  // Wait for the HTML document to be fully loaded before running the script
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get the hamburger icon and the navigation links container by their IDs
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    // Check if both elements exist on the page to prevent errors
+    if (hamburger && navLinks) {
+      // Add a 'click' event listener to the hamburger icon
+      hamburger.addEventListener('click', () => {
+        // When the hamburger is clicked, toggle the 'active' class on the nav-links container.
+        // The CSS will handle the animation to show/hide the menu.
+        navLinks.classList.toggle('active');
+      });
+    }
+
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 500,
+        "density": { "enable": true, "value_area": 1000 }
+      },
+      "color": { "value": "#dfad51" },
+      "shape": { "type": "circle" },
+      "opacity": { "value": 0.7, "random": true },
+      "size": { "value": 1, "random": true },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#dfad51",
+        "opacity": 0.2,
+        "width": 1
+      },
+      "move": { "enable": true, "speed": 0.5, "random": true }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": { "enable": true, "mode": "repulse" },
+        "onclick": { "enable": true, "mode": "push" }
+      },
+      "modes": {
+        "repulse": { "distance": 100, "duration": 0.4 },
+        "push": { "particles_nb": 4 }
+      }
+    },
+    "retina_detect": true
+  });
+</script>
 </body>
 </html>
