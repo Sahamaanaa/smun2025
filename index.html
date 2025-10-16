@@ -1,89 +1,265 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/seasons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <title>SMUN - Model United Nations</title>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/seasons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="favicon.png">
+        <title>SMUN - Model United Nations</title>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-VCB5QTGWRH');
+        </script>
+        <link rel="stylesheet" href="style.css">
+        <script defer src="script.js"></script>
 
-  gtag('config', 'G-VCB5QTGWRH');
-</script>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
-</head>
-<body>
+        <style>
 
-<!-- Navbar -->
+            .countdown {
+  display: flex;
+  justify-content: center;
+  gap: clamp(15px, 5vw, 40px); /* slightly smaller gap */
+  margin: clamp(20px, 5vh, 50px) 0;
+  flex-wrap: wrap;
+}
 
-<nav class="navbar">
-    <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
+.countdown div {
+  border-radius: 12px; /* softer edges */
+  background: rgba(30, 30, 35, 0.7); /* slightly more transparent */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: clamp(65px, 10vw, 110px); /* smaller box */
+  height: clamp(65px, 10vw, 110px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
 
-    <!-- Hamburger Icon -->
-    <div class="hamburger" id="hamburger">
-        &#9776; <!-- Unicode hamburger menu -->
-    </div>
+.countdown span {
+  font-size: clamp(1.4rem, 4vw, 2.5rem); /* smaller numbers */
+  font-weight: 800;
+  background: linear-gradient(135deg, #dfad51, #ffd966, #c7c7c7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
 
-    <!-- Nav Links -->
-    <ul class="nav-links" id="nav-links">
-        <li><a href="index.html" class="active">HOME</a></li>
-        <li><a href="register.html">REGISTER</a></li>
-        <li><a href="secretariat.html">SECRETARIAT</a></li>
-        <li><a href="committees.html">COMMITTEES</a></li>
-        <li><a href="resources.html">RESOURCES</a></li>
-        <li><a href="contact.html">CONTACT US</a></li>
-    </ul>
-</nav>
+.countdown .label {
+  margin-top: 4px;
+  font-size: clamp(0.6rem, 1.4vw, 0.9rem); /* smaller label */
+  color: rgba(220, 220, 220, 0.85);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+            .hero-title {
+              font-family: 'Cinzel', serif;
+              font-size: clamp(3rem, 16vw, 200px); /* smooth scaling between phone and desktop */
+              font-weight: 600;
+              color: #fff;
+              letter-spacing: clamp(4px, 1.5vw, 15px);
+              line-height: 1;
+              transform: translateY(1vh);
+              text-shadow:
+                  0 0 8px rgba(255, 215, 0, 0.21),
+                  0 0 16px rgba(255, 223, 0, 0.18),
+                  0 0 24px rgba(255, 215, 0, 0.13),
+                  0 0 32px rgba(255, 223, 0, 0.1);
+            }
+
+            .hero-sahamaana {
+              font-family: 'Raleway', sans-serif;
+              font-size: clamp(0.6rem, 1.5vw, 0.9rem); /* now scales properly */
+              font-weight: 700;
+              text-transform: uppercase;
+              color: rgba(255, 255, 255, 0.9);
+              letter-spacing: clamp(2px, 1vw, 6px);
+              margin: 0;
+              text-align: center;
+              transform: translateY(15vh);
+            }
+            .gold {
+    background: linear-gradient(135deg, #dfad51, #ffd966, #c7c7c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+            @media (max-width: 768px) {
+      .hero-sahamaana {
+        transform: translateY(6vh);
+        font-size: clamp(0.6rem, 2.5vw, 0.9rem); /* smaller subtitle */
+        letter-spacing: 2px;
+      }
+
+      .hero-title {
+        transform: translateY(2vh);
+        font-size: clamp(8rem, 28vw, 14rem); /* much bigger title */
+        letter-spacing: 6px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-sahamaana {
+        transform: translateY(10vh);
+        font-size: clamp(0.5rem, 2.5vw, 0.8rem); /* tiny subtitle */
+        letter-spacing: 1.5px;
+      }
+
+      .hero-title {
+        transform: translateY(2vh);
+        font-size: clamp(5rem, 25vw, 10rem); /* large and dominant on small phones */
+        letter-spacing: 4px;
+      }
+    }
 
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="hero-title-wrap">
-        <h1 class="hero-title"><span class="gold">S</span>MUN</h1>
-    </div>
+        </style>
+    </head>
+    <body>
+    <div id="particles-js"></div>
 
-    <div class="hero-content">
-        <p class="hero-subtitle">The platform where diplomacy meets imagination.</p>
-        <div class="button-container">
-            <a href="register.html" class="btn">Register</a>
-            <a href="committees.html" class="btn btn-outline">Explore Committees</a>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger">
+            &#9776;
         </div>
-    </div>
-</section>
 
-<!-- About Section -->
-<section class="about fade-in">
-    <div class="about-card">
-        <h2>SMUN: <span class="highlight">Chapter I</span></h2>
-        <p>
-            Emerging as one of Kolkata’s most distinguished Model United Nations experiences, SMUN stands not merely as a conference, but as the genesis of a legacy. Chapter One marks the inception of a forum destined for greatness — where diplomacy is reimagined, excellence is uncompromising, and the pursuit of global discourse is elevated to an art.
-        </p>
-        <p>
-            Here, delegates do not just debate; they craft narratives of change, forge resolutions with conviction, and embody diplomacy at its most profound. With a spectrum of dynamic committees and a Secretariat devoted to vision over routine, SMUN Chapter One is the foundation of a tradition that aspires to transcend boundaries.
-        </p>
-        <p> <b>
-            This is not simply the launch of an event — it is the dawn of an institution, a cause, and a movement whose story every delegate will help script.
-        </b></p>
-    </div>
-</section>
+        <!-- Nav Links -->
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" class="active">HOME</a></li>
+            <li><a href="register.html">REGISTER</a></li>
+            <li><a href="secretariat.html">SECRETARIAT</a></li>
+            <li><a href="committees.html">COMMITTEES</a></li>
+            <li><a href="resources.html">RESOURCES</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+        </ul>
+    </nav>
 
-<!-- Footer -->
-<footer class="footer">
-    <p>&copy; 2025 SMUN | All Rights Reserved</p>
-</footer>
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-title-wrap">
+                <!-- Subtitle above main title -->
+                <h2 class="hero-sahamaana"><span class="gold">SAHAMAANAA</span> PRESENTS</h2>
+                <h1 class="hero-title"><span class="gold">S</span>MUN</h1>
+            </div>
 
-</body>
-</html>
+            <!-- Countdown Clock -->
+            <div class="countdown">
+                <div><span id="days">00</span><div class="label"><b>Days</b></div></div>
+                <div><span id="hours">00</span><div class="label"><b>Hours</b></div></div>
+                <div><span id="minutes">00</span><div class="label"><b>Minutes</b></div></div>
+                <div><span id="seconds">00</span><div class="label"><b>Seconds</b></div></div>
+            </div>
 
+            <div class="button-container">
+                <a href="register.html" class="btn"><b>Register</b></a>
+                <a href="committees.html" class="btn btn-outline"><b>Explore Committees</b></a>
+            </div>
+        </section>
 
+    </section>
+
+    <!-- About Section -->
+    <section class="about fade-in">
+        <div class="about-card">
+            <h2>SMUN: <span class="highlight">Chapter I</span></h2>
+            <p>
+                Emerging as one of Kolkata’s most distinguished Model United Nations experiences, SMUN stands not merely as a conference, but as the genesis of a legacy. Chapter One marks the inception of a forum destined for greatness — where diplomacy is reimagined, excellence is uncompromising, and the pursuit of global discourse is elevated to an art.
+            </p>
+            <p>
+                Here, delegates do not just debate; they craft narratives of change, forge resolutions with conviction, and embody diplomacy at its most profound. With a spectrum of dynamic committees and a Secretariat devoted to vision over routine, SMUN Chapter One is the foundation of a tradition that aspires to transcend boundaries.
+            </p>
+            <p><b>
+                This is not simply the launch of an event — it is the dawn of an institution, a cause, and a movement whose story every delegate will help script.
+            </b></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 SMUN | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Set target date (YYYY, M-1, D, H, M, S)
+        const targetDate = new Date("2025-11-08T09:00:00").getTime();
+
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown").innerHTML = "<h2>Event Started!</h2>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, "0");
+            document.getElementById("hours").innerText = hours.toString().padStart(2, "0");
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, "0");
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, "0");
+        }, 1000);
+    </script>
+    <!-- particles.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script>
+        particlesJS("particles-js", {
+          "particles": {
+            "number": {
+              "value": 500,
+              "density": { "enable": true, "value_area": 1000 }
+            },
+            "color": { "value": "#dfad51" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.7, "random": true },
+            "size": { "value": 1, "random": true },
+            "line_linked": {
+              "enable": true,
+              "distance": 150,
+              "color": "#dfad51",
+              "opacity": 0.2,
+              "width": 1
+            },
+            "move": { "enable": true, "speed": 0.5, "random": true }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": { "enable": true, "mode": "repulse" },
+              "onclick": { "enable": true, "mode": "push" }
+            },
+            "modes": {
+              "repulse": { "distance": 100, "duration": 0.4 },
+              "push": { "particles_nb": 4 }
+            }
+          },
+          "retina_detect": true
+        });
+    </script>
+
+    </body>
+    </html>
 
