@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000); // Wait 2 seconds before starting the fade-out
 });
 
+
 // The rest of your existing script.js code can go here
 // Hamburger menu functionality
 const hamburger = document.getElementById('hamburger');
@@ -41,3 +42,4 @@ const navLinks = document.getElementById('nav-links');
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
+
