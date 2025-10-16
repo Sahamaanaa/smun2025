@@ -5,20 +5,275 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMUN - Committees</title>
     <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/png" href="favicon.png">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-VCB5QTGWRH');
-</script>
-    <script defer src="script.js"></script>
+        gtag('config', 'G-VCB5QTGWRH');
+    </script>
+
+    <!-- helper that applies data-image -> photo background (keeps your markup) -->
+    <script>
+        (function(){
+          // run after DOM ready — if this executes early it simply won't find nodes
+          function applyCardImages(){
+            document.querySelectorAll('.committee-card').forEach(function(card){
+              var imgAttr = card.getAttribute('data-image');
+              var photo = card.querySelector('.photo');
+              if(!imgAttr || !photo) return;
+              // allow both `url('file.png')` or plain `file.png`
+              var match = imgAttr.match(/^url\((['"]?)(.*)\1\)$/);
+              var src = match ? match[2] : imgAttr;
+              photo.style.backgroundImage = "url('" + src + "')";
+              // progressive enhancement: set a subtle background color while image loads
+              photo.style.backgroundColor = "rgba(0,0,0,0.06)";
+            });
+          }
+          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyCardImages);
+          else applyCardImages();
+        })();
+    </script>
+
+    <style>
+        /* --------------------------
+           Fade / hero offset + reveal variables
+           -------------------------- */
+        :root{
+          /* tweak this to push the hero lower or higher */
+          --hero-offset: 300px;   /* change this value to move the hero down/up */
+
+          /* hero & cards timing (keeps Secretariat timings) */
+          --hero-delay: 1500ms; /* when fade starts */
+          --hero-dur: 700ms;    /* fade duration */
+          --cards-dur: 480ms;   /* cards reveal duration */
+        }
+
+        /* move the hero slightly lower (single variable control) */
+        .hero { padding-top: var(--hero-offset); }
+
+        /* hero content fade (CSS-controlled) */
+        .hero .hero-content {
+          transition: opacity var(--hero-dur) ease;
+          opacity: 1; /* initial */
+        }
+
+        /* committee cards are hidden initially; reveal with .show */
+        .committee-cards {
+          opacity: 0;
+          transform: translateY(14px) scale(0.99);
+          transition: opacity var(--cards-dur) ease, transform var(--cards-dur) ease;
+          pointer-events: none;
+        }
+
+        .committee-cards.show {
+          opacity: 1;
+          transform: none;
+          pointer-events: auto;
+        }
+
+        /* individual cards start hidden — CSS controls final state (prevents JS double writes) */
+        .committee-card {
+          opacity: 0;
+          transform: translateY(6px);
+          transition: opacity .42s ease, transform .42s ease;
+        }
+
+        /* when container shows, cards go to visible */
+        .committee-cards.show .committee-card {
+          opacity: 1;
+          transform: none;
+        }
+
+        /* respect users who prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          .hero .hero-content,
+          .committee-cards,
+          .committee-card { transition: none !important; }
+        }
+    </style>
+
+    <style>
+        /* ---------- Card design (replace previous card styles only) ---------- */
+        /* A clean, slightly glassy card with subtle motion and strong mobile behavior. */
+
+        :root{
+          --muted: #f8f5e1;
+          --gold-light: linear-gradient(135deg,#fff9e6 0%, #f3e2a7 60%, #d4b85b 100%);
+          --glass-bg: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+          --glass-border: rgba(212,184,91,0.06);
+          --card-max: 420px;
+          --gutter: 24px;
+        }
+
+        /* container: center on wide screens, grid responsive */
+        .committee-cards{
+          display:grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: var(--gutter);
+          width:100%;
+          max-width:800px;
+          margin:1px auto;
+          padding:20px;
+          box-sizing:border-box;
+          justify-items:center; /* keeps cards centered in each grid cell */
+        }
+
+        /* card base */
+        .committee-card{
+          width:100%;
+          max-width: var(--card-max);
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          border-radius:16px;
+          overflow:clip;
+          box-shadow: 0 8px 30px rgba(6,8,12,0.45);
+          transition: transform .36s cubic-bezier(.2,.9,.3,1), box-shadow .36s ease;
+          text-decoration:none !important;
+          color:inherit;
+          -webkit-tap-highlight-color: transparent;
+          display:block;
+          will-change: transform, opacity;
+        }
+
+        /* inner layout */
+        .card-inner{ display:flex; flex-direction:column; gap:14px; padding:14px; box-sizing:border-box; }
+
+        /* image panel */
+        .photo{
+          width:100%;
+          height:160px;
+          background-size:cover;
+          background-position:center;
+          background-repeat:no-repeat;
+          border-radius:10px;
+          box-shadow: inset 0 -10px 40px rgba(0,0,0,0.15);
+          position:relative;
+          overflow:hidden;
+          transition: transform .45s cubic-bezier(.2,.9,.3,1), filter .35s ease;
+        }
+
+        /* gentle image overlay for legibility */
+        .photo::after{
+          content:"";
+          position:absolute;
+          inset:0;
+          background: linear-gradient(180deg, rgba(8,8,12,0.0) 10%, rgba(8,8,12,0.28) 100%);
+          pointer-events:none;
+          transition: opacity .36s ease;
+        }
+
+        /* info area */
+        .info{
+          display:flex;
+          flex-direction:column;
+          gap:6px;
+          align-items:flex-start;
+          justify-content:center;
+        }
+
+        /* role — Playfair look, clean */
+        .role{
+          font-family:'Playfair Display', serif;
+          text-align:center;
+          font-weight:700;
+          font-size:16px;
+          line-height:1.05;
+          margin:0;
+          color:var(--muted);
+          background:var(--gold-light);
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+          display:inline-block;
+          letter-spacing:0.2px;
+          text-decoration:none !important;
+        }
+
+        /* short descriptor */
+        .position{
+          text-align:center;
+          font-size:13px;
+          color: rgba(233,238,246,0.72);
+          display:block;
+          margin-top:2px;
+        }
+
+        /* hover/focus: lift and slightly scale the image */
+        .committee-card:hover,
+        .committee-card:focus{
+          transform: translateY(-10px) scale(1.04);
+          box-shadow: 0 22px 50px rgba(6,8,12,0.5);
+          outline: none;
+        }
+        .committee-card:hover .photo,
+        .committee-card:focus .photo{
+          transform: scale(1.03) translateY(-6px);
+          filter: saturate(1.03) brightness(1.03);
+        }
+
+        /* focus ring for keyboard users */
+        .committee-card:focus{
+          box-shadow: 0 12px 36px rgba(6,8,12,0.46), 0 0 0 4px rgba(212,184,91,0.09);
+          border-color: rgba(212,184,91,0.12);
+        }
+
+        /* ---------- Mobile: full-bleed stacked cards ---------- */
+        @media (max-width:640px){
+          :root { --gutter: 12px; --card-max: 100vw; }
+          .committee-cards{
+            grid-template-columns: 1fr;
+            gap:14px;
+            padding:0;
+            width:100vw;
+            max-width:100vw;
+            margin: 18px 0;
+          }
+
+          .committee-card{
+            max-width: none;
+            width:65vw;
+            border-radius:0;
+            padding:0;
+            box-shadow: none;
+            border-left: none;
+            border-right: none;
+          }
+
+          .card-inner{ padding:12px; }
+
+          .photo{ height:140px; border-radius:6px; }
+
+          .role{ font-size:15px; text-align:center;}
+          .position{ font-size:12px; color: rgba(233,238,246,0.68); text-align:center;}
+
+          /* center the text in tiny viewports */
+          .info{ align-items:flex-start; }
+        }
+
+        /* smaller phones */
+        @media (max-width:420px){
+          .photo{ height:120px; }
+          .role{ font-size:14px;text-align:center; }
+        }
+
+        /* accessibility: remove animations for users who prefer reduced motion */
+        @media (prefers-reduced-motion: reduce){
+          .committee-card,
+          .photo,
+          .photo::after { transition: none !important; transform:none !important; }
+        }
+
+        /* ensure no accidental link underlines from global styles */
+        .committee-card,
+        .committee-card * { text-decoration: none !important; -webkit-text-decoration-color: transparent !important; }
+    </style>
+
 </head>
 <body>
-
+<div id="particles-js"></div>
 <nav class="navbar">
     <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
 
@@ -45,7 +300,7 @@
     </div>
 
     <div class="committee-cards" id="committeeCards" aria-hidden="true">
-        <a href="cabinet.html" class="committee-card" id="cabinet" data-image="url('image.png')">
+        <a href="cabinet.html" class="committee-card" id="cabinet" data-image="url('images/C1.png')">
             <div class="card-inner">
                 <div class="photo"></div>
                 <div class="info">
@@ -56,7 +311,7 @@
             </div>
         </a>
 
-        <a href="ipc.html" class="committee-card" id="ipc" data-image="url('IPC1.png')">
+        <a href="ipc.html" class="committee-card" id="ipc" data-image="url('images/IPC.jpg')">
             <div class="card-inner">
                 <div class="photo"></div>
                 <div class="info">
@@ -66,7 +321,7 @@
             </div>
         </a>
 
-        <a href="unga.html" class="committee-card" id="unga" data-image="url('D.png')">
+        <a href="unga.html" class="committee-card" id="unga" data-image="url('images/D.png')">
             <div class="card-inner">
                 <div class="photo"></div>
                 <div class="info">
@@ -76,7 +331,7 @@
             </div>
         </a>
 
-        <a href="loksabha.html" class="committee-card" id="loksabha" data-image="url('Loksabha.png')">
+        <a href="loksabha.html" class="committee-card" id="loksabha" data-image="url('images/Loksabha.png')">
             <div class="card-inner">
                 <div class="photo"></div>
                 <div class="info">
@@ -91,11 +346,91 @@
 <footer class="footer">
     <p>&copy; 2025 SMUN | All Rights Reserved</p>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 500,
+          "density": { "enable": true, "value_area": 1000 }
+        },
+        "color": { "value": "#dfad51" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.7, "random": true },
+        "size": { "value": 1, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#dfad51",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": { "enable": true, "speed": 0.5, "random": true }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "repulse": { "distance": 100, "duration": 0.4 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+</script>
+
+<!-- Fade + Reveal behavior (matches Secretariat logic).
+     IMPORTANT: This only adds .show to the container — no per-card inline style writes. -->
+<script>
+    (function(){
+      const heroContent = document.getElementById('hero-content');
+      const cardsContainer = document.getElementById('committeeCards');
+
+      const HERO_DELAY = 1500; // ms — when the fade begins (matches Secretariat)
+      const HERO_DUR = 700;    // ms — CSS transition duration for hero fade
+      const FALLBACK = HERO_DELAY + HERO_DUR; // 2200ms
+
+      function revealCards() {
+        if (!cardsContainer) return;
+        cardsContainer.classList.add('show');
+        cardsContainer.setAttribute('aria-hidden', 'false');
+      }
+
+      function init() {
+        if (!heroContent || !cardsContainer) return;
+
+        // start fade after delay
+        setTimeout(() => {
+          heroContent.style.opacity = 0;
+        }, HERO_DELAY);
+
+        // when the opacity transition ends, reveal cards
+        const onTransitionEnd = (ev) => {
+          if (ev.propertyName === 'opacity') {
+            revealCards();
+            heroContent.removeEventListener('transitionend', onTransitionEnd);
+          }
+        };
+        heroContent.addEventListener('transitionend', onTransitionEnd);
+
+        // fallback in case transitionend doesn't fire
+        setTimeout(() => {
+          if (!cardsContainer.classList.contains('show')) {
+            revealCards();
+          }
+        }, FALLBACK + 20);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+</script>
 </body>
 </html>
-
-
-
-
-
-
