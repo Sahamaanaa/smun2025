@@ -3,31 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lok Sabha - SMUN</title>
+    <title>SMUN - Lok Sabha</title>
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
-        <link rel="icon" type="image/png" href="favicon.png">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-VCB5QTGWRH');
-</script>
+        gtag('config', 'G-VCB5QTGWRH');
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <script defer src="script.js"></script>
     <style>
-        body {
-          background: #0b0c10;
-          color: #fff;
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-        }
-
-        .loksabha-container {
+        .container {
           max-width: 900px;
           margin: 50px auto;
           padding: 40px 60px;
@@ -39,8 +31,8 @@
           100% { opacity: 1; transform: scale(1); }
         }
 
-        .loksabha-container h1 {
-          font-family: 'Oswald', sans-serif;
+        .container h1 {
+          font-family: 'Times New Roman', sans-serif;
           font-weight: 700;
           font-size: 60px;
           letter-spacing: 3px;
@@ -68,10 +60,13 @@
           color: #ffffff;
           font-size: 20px;
         }
+        footer{
+      margin-top:212px;
+    }
     </style>
 </head>
 <body>
-
+<div id="particles-js"></div>
 <!-- Navbar -->
 <!-- Navbar -->
 
@@ -95,7 +90,7 @@
 </nav>
 
 
-<div class="loksabha-container">
+<div class="container">
     <h1>LOK SABHA</h1>
     <div class="committee-font">
         <p><span class="subheading">Agenda:</span> <span class="content"><b>Revamping the Indian Judiciary: Evaluating the Bharat Nyaya Sanhita and Advancing Reforms to Restore Accountability, Efficiency, and Public Trust.</b></span></p>
@@ -109,8 +104,43 @@
 <footer class="footer">
     <p>&copy; 2025 SMUN | All Rights Reserved</p>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 500,
+          "density": { "enable": true, "value_area": 1000 }
+        },
+        "color": { "value": "#dfad51" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.7, "random": true },
+        "size": { "value": 1, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#dfad51",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": { "enable": true, "speed": 0.5, "random": true }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "repulse": { "distance": 100, "duration": 0.4 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+</script>
 </body>
 </html>
-
 
 
